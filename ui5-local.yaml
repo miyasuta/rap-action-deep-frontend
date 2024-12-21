@@ -42,6 +42,8 @@ server:
           - path: /sap
             url: https://23bf02f0-9d4d-4fe7-ae57-cab54ffafb1e.abap.us10.hana.ondemand.com
             destination: abap-cloud-default_abap-trial-b0f2992ctrial-dev
+            scp: true
+            authenticationType: OAuth2UserTokenExchange
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:

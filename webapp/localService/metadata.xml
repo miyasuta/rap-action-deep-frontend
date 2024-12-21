@@ -101,6 +101,12 @@
             <ComplexType Name="StockOperationControl">
                 <Property Name="Edit" Type="Edm.Boolean" Nullable="false"/>
             </ComplexType>
+            <ComplexType Name="ZA_PRODUCT_TABLE">
+                <Property Name="productUuId" Type="Edm.Guid"/>
+            </ComplexType>
+            <ComplexType Name="ZA_AMOUNT">
+                <Property Name="amount" Type="Edm.Int32" Nullable="false"/>
+            </ComplexType>
             <ComplexType Name="EntityControl">
                 <Property Name="Deletable" Type="Edm.Boolean" Nullable="false"/>
                 <Property Name="Updatable" Type="Edm.Boolean" Nullable="false"/>
@@ -131,6 +137,12 @@
             <Action Name="Activate" EntitySetPath="_it" IsBound="true">
                 <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.StockType" Nullable="false"/>
                 <ReturnType Type="com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.StockType" Nullable="false"/>
+            </Action>
+            <Action Name="calcStockAmountDeep" IsBound="true">
+                <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.StockType)" Nullable="false"/>
+                <Parameter Name="dummy" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Parameter Name="_product" Type="Collection(com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.ZA_PRODUCT_TABLE)" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.ZA_AMOUNT" Nullable="false"/>
             </Action>
             <EntityContainer Name="Container">
                 <EntitySet Name="I_DraftAdministrativeData" EntityType="com.sap.gateway.srvd.zui_yasu_stock_o4.v0001.I_DraftAdministrativeDataType"/>
@@ -632,6 +644,10 @@
                 <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
             </Annotations>
+            <Annotations Target="SAP__self.ZA_PRODUCT_TABLE/productUuId">
+                <Annotation Term="SAP__common.Label" String="UUID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
+            </Annotations>
             <Annotations Target="SAP__self.EntityControl/Deletable">
                 <Annotation Term="SAP__common.Label" String="Dyn. Method Control"/>
                 <Annotation Term="SAP__common.Heading" String="Dynamic Method Control"/>
@@ -641,6 +657,10 @@
                 <Annotation Term="SAP__common.Label" String="Dyn. Method Control"/>
                 <Annotation Term="SAP__common.Heading" String="Dynamic Method Control"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Dynamic Method Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.SAP__VIRTUAL_CO_TY_2/_product/productUuId">
+                <Annotation Term="SAP__common.Label" String="UUID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>
