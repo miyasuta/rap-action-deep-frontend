@@ -58,7 +58,7 @@ export function getTotalDeep(this: ExtensionAPI, pageContext: Context) {
     }
 
     const fnError = (error:Error) => {
-        debugger;
+        MessageBox.error(error.message);
     }
 
     operation.invoke().then(fnSuccess, fnError);
